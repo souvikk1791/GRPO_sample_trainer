@@ -2,7 +2,7 @@ Loading model ..
 get peft model
 Creating reference model
 start training
-GRPO Training:   0%|                                                                                   | 6/4680 [08:57<116:02:28, 89.38s/it, rewards=0, loss=0, kl_div=0, objective=0]
+GRPO Training:   0%|▏                                                                                  | 8/4680 [11:39<113:03:26, 87.12s/it, rewards=0, loss=0, kl_div=0, objective=0]
 running inference
 running inference
 running inference
@@ -26,3 +26,14 @@ grpo 1 over
 grpo 2 over
 running inference
 running inference
+running inference
+running inference
+input_shape torch.Size([256, 1024])
+grpo 1 over
+grpo 2 over
+running inference
+running inference
+running inference
+running inference
+input_shape torch.Size([256, 1024])
+grpo 1 over
