@@ -1,0 +1,9 @@
+Loading model ..
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+Traceback (most recent call last):
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 101, in <module>
+    trainer.init_model(model_name, get_peft=True)
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 168, in init_model
+    self.GEN_CONFIG.pad_token_id = tokenizer.pad_token_id
+                                   ^^^^^^^^^
+NameError: name 'tokenizer' is not defined. Did you mean: 'self.tokenizer'?

@@ -1,0 +1,20 @@
+Loading model ..
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                                                                                                                                                                     | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+running inference
+running inference
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 102, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 288, in train
+    advantages, rewards, rewards_list = self.get_advantages(
+                                        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 96, in get_advantages
+    rewards, rewards_list = total_reward(completions, **kwargs)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/utils.py", line 50, in total_reward
+    correctness_reward_func(completions, kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: correctness_reward_func() takes 1 positional argument but 2 were given

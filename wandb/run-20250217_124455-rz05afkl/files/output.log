@@ -1,0 +1,11 @@
+Loading model ..
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                               | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 114, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 241, in train
+    questions = [x for x in [q]*self.GROUP_SIZE  for q in batch["question"]]
+                             ^
+UnboundLocalError: cannot access local variable 'q' where it is not associated with a value

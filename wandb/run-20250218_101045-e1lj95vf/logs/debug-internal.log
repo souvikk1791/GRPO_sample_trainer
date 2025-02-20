@@ -1,0 +1,15 @@
+{"time":"2025-02-18T10:10:45.730365431Z","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/home/jovyan/data/vision training/GRPO_sample_trainer/wandb/run-20250218_101045-e1lj95vf/logs/debug-core.log"}
+{"time":"2025-02-18T10:10:45.845716158Z","level":"INFO","msg":"created new stream","id":"e1lj95vf"}
+{"time":"2025-02-18T10:10:45.846089148Z","level":"INFO","msg":"stream: started","id":"e1lj95vf"}
+{"time":"2025-02-18T10:10:45.846121923Z","level":"INFO","msg":"writer: Do: started","stream_id":"e1lj95vf"}
+{"time":"2025-02-18T10:10:45.846395929Z","level":"INFO","msg":"sender: started","stream_id":"e1lj95vf"}
+{"time":"2025-02-18T10:10:45.846431478Z","level":"INFO","msg":"handler: started","stream_id":"e1lj95vf"}
+{"time":"2025-02-18T10:10:46.04721335Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-02-18T10:14:26.954743855Z","level":"INFO","msg":"stream: closing","id":"e1lj95vf"}
+{"time":"2025-02-18T10:14:26.95492026Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-02-18T10:14:26.956254122Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-02-18T10:14:27.205522657Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-02-18T10:14:27.420926735Z","level":"INFO","msg":"handler: closed","stream_id":"e1lj95vf"}
+{"time":"2025-02-18T10:14:27.421010119Z","level":"INFO","msg":"writer: Close: closed","stream_id":"e1lj95vf"}
+{"time":"2025-02-18T10:14:27.421027082Z","level":"INFO","msg":"sender: closed","stream_id":"e1lj95vf"}
+{"time":"2025-02-18T10:14:27.421929519Z","level":"INFO","msg":"stream: closed","id":"e1lj95vf"}

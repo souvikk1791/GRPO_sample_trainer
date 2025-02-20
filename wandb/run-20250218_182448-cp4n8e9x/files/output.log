@@ -1,0 +1,22 @@
+Loading model ..
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                                                         | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+running inference
+running inference
+8
+mask.device cuda:0
+final_advantages.device cuda:0
+per_token_loss.size torch.Size([4, 1023])
+loss from sum: tensor([-1.2045,  1.2373,  0.0000,  0.0000], device='cuda:0',
+       grad_fn=<DivBackward0>)
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 102, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 405, in train
+    logp_proxy = self.logp_per_token(self.model, current_inputs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 248, in logp_per_token
+    return self.selective_log_softmax(logits.float(), input_ids)
+                                      ^^^^^^^^^^^^^^
+RuntimeError: NVML_SUCCESS == r INTERNAL ASSERT FAILED at "/pytorch/c10/cuda/CUDACachingAllocator.cpp":1015, please report a bug to PyTorch.
