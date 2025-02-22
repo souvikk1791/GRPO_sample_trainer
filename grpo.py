@@ -11,6 +11,7 @@ from utils import *
 import wandb
 import numpy as np
 import gc
+
 # Global variables
 SYSTEM_PROMPT = """
 You are an helpful Assistant with excellent reasoning ability. When the user asks the question and the assistant solves the problem by reasoning in a step by step process and then provides the user with the answer. Always respond in the following format:
@@ -28,63 +29,69 @@ XML_COT_FORMAT = """\
 
 class GRPOTrain():
     def __init__(self, 
-                 BATCH_SIZE: int = 16, 
+                 system_prompt : str,
+                 batch_size: int = 16, 
                  evaluation_steps: int = 5,
                  ema_decay: float = 0.99, 
                  kl_lambda: float = 0.1, 
-                 GROUP_SIZE: int = 16, 
-                 DTYPE = torch.float16, 
-                 DEVICE: str = "cuda", 
-                 GRPO_ITER: int = 2, 
-                 EPOCHS: int = 5, 
-                 MAX_LEN: int = 1024,
-                 use_wandb = None,
-                 MINI_BATCH_SIZE = 4, 
-                 ETA = 0.1,
-                 BETA = 0.1,
-                 INF_F = 4,
-                 GEN_CONFIG: GenerationConfig = None,
-                 MAX_ITER: int= 100000):
+                 group_size: int = 16, 
+                 dtype = torch.float16, 
+                 device: str = "cuda", 
+                 grpo_iter: int = 2, 
+                 epochs: int = 5, 
+                 max_len: int = 1024,
+                 use_wandb: bool = None,
+                 mini_batch_size: int = 4, 
+                 eta: float = 0.1,
+                 beta: float = 0.1,
+                 inf_f: float = 4,
+                 gen_config: GenerationConfig = None,
+                 max_iter: int= 100000):
         """
         Initialize GRPOTrain with training configuration.
 
         Args:
-            BATCH_SIZE (int): Batch size for training.
+            batch_size (int): Batch size for training.
             evaluation_steps (int): Frequency of evaluation steps.
             ema_decay (float): EMA decay for the reference model.
             kl_lambda (float): Weight for KL divergence loss.
-            GROUP_SIZE (int): Number of generations per batch.
-            DTYPE: Data type for computation.
-            DEVICE (str): Device for model training (e.g., 'cuda').
-            GRPO_ITER (int): Number of GRPO iterations per batch.
-            EPOCHS (int): Total number of training epochs.
-            MAX_LEN (int): Maximum length for model inputs.
-            GEN_CONFIG (GenerationConfig): Generation configuration; defaults to preset if None.
+            group_size (int): Number of generations per batch.
+            dtype: Data type for computation.
+            device (str): Device for model training (e.g., 'cuda').
+            grpo_iter (int): Number of GRPO iterations per batch.
+            epochs (int): Total number of training epochs.
+            max_len (int): Maximum length for model inputs.
+            gen_config (GenerationConfig): Generation configuration; defaults to preset if None.
         """
-        if GEN_CONFIG is None:
-            GEN_CONFIG = GenerationConfig(
+        if gen_config is None:
+            gen_config = GenerationConfig(
                 num_return_sequences=1,
                 max_length=1024,
                 do_sample=True,
                 temperature=0.75,
                 top_p=0.75,
             )
-        self.BATCH_SIZE = BATCH_SIZE
+
+        if system_prompt is None:
+            self.system_prompt = SYSTEM_PROMPT
+        else:
+            self.system_prompt = system_prompt
+        self.batch_size = batch_size
         self.evaluation_steps = evaluation_steps
         self.ema_decay = ema_decay         # EMA decay factor for reference model
         self.kl_lambda = kl_lambda          # weight for KL divergence loss
-        self.GROUP_SIZE = GROUP_SIZE        # number of generations per batch
-        self.DTYPE = DTYPE
-        self.DEVICE = DEVICE
-        self.GRPO_ITER = GRPO_ITER
-        self.EPOCHS = EPOCHS
-        self.MAX_LEN = MAX_LEN
-        self.MINI_BATCH_SIZE = MINI_BATCH_SIZE
-        self.ETA = ETA
-        self.BETA = BETA
-        self.GEN_CONFIG = GEN_CONFIG
-        self.MAX_ITER = MAX_ITER
-        self.INF_F = INF_F
+        self.group_size = group_size        # number of generations per batch
+        self.dtype = dtype
+        self.device = device
+        self.grpo_iter = grpo_iter
+        self.epochs = epochs
+        self.max_len = max_len
+        self.mini_batch_size = mini_batch_size
+        self.eta = eta
+        self.beta = beta
+        self.gen_config = gen_config
+        self.max_iter = max_iter
+        self.inf_f = inf_f
         self.use_wandb = use_wandb
         if self.use_wandb:
             wandb.login()
@@ -247,7 +254,110 @@ class GRPOTrain():
                             generation_config=self.GEN_CONFIG
                         )
             torch.cuda.empty_cache()
-            return outputs           
+            return outputs    
+
+    def prepare_inputs(self, batch):
+
+        # Run multiple generations per batch and average the loss
+        output_groups = []
+
+        questions = [x for q in batch["question"] for x in [q]*self.GROUP_SIZE]
+        answers = [x for q in batch["answer"] for x in [q]*self.GROUP_SIZE]
+
+        batch_inputs = [x for b in batch["prompt"] for x in [b]*self.GROUP_SIZE]
+        batch_inputs = self.tokenizer.apply_chat_template(batch_inputs, tokenize=False, add_generation_prompt=True)
+        
+        inputs = self.tokenizer(
+            batch_inputs,
+            return_tensors="pt",
+            padding=True,
+            padding_side="left",
+        )
+        
+        refs = inputs["input_ids"]
+        # print("refs_size", len(refs))
+        for i in range(0, len(refs), self.GROUP_SIZE*self.INF_F):
+            
+            current_inputs = current_inputs = {
+                k: v[i : i + self.GROUP_SIZE*self.INF_F].clone().to(self.DEVICE) for k, v in inputs.items()
+            }
+            outputs = self.run_inference(self.model, current_inputs)
+            current_inputs = current_inputs = {
+                k: v[i : i + self.GROUP_SIZE*self.INF_F].to("cpu") for k, v in inputs.items()
+            }
+            current_inputs = None
+            output_groups.append(outputs)
+
+        # output_groups = torch.stack(output_groups)
+        completions = [
+            self.tokenizer.decode(g[len(l):], skip_special_tokens=True)
+            for i, output in enumerate(output_groups) for g, l in zip(output, refs[i*(self.GROUP_SIZE*self.INF_F): i*(self.GROUP_SIZE*self.INF_F) + self.GROUP_SIZE*self.INF_F])
+        ] 
+        # print("completions size", len(completions))
+        # print("refs size", len(refs))
+        advantages, rewards, rewards_list = self.get_advantages(
+            completions,
+            group_size=self.GROUP_SIZE,
+            answers=answers,
+            questions=questions,
+        )
+        inputs = inputs.to("cpu")
+        if self.use_wandb:
+            table = wandb.Table(columns=["question", "answer", "model output", "reward"])
+            for idx, (q, a, c, r) in enumerate(
+                zip(questions, answers, completions, rewards)
+            ):
+                if idx % self.GROUP_SIZE == 0:
+                    table.add_data(q, a, c, r.item())
+            wandb.log({"completions": table}, commit=False)
+
+        ## Compute reference log-prob
+        final_inputs_len = [
+            len(
+                self.tokenizer.apply_chat_template(
+                    [
+                        {"role": "system", "content": self.system_prompt},
+                        {"role": "user", "content": q},
+                    ]
+                )
+            )
+            for q in questions
+        ]
+
+        final_model_input = [
+                    self.tokenizer.apply_chat_template(
+                        [
+                            {"role": "system", "content": self.system_prompt},
+                            {"role": "user", "content": q},
+                            {"role": "assistant", "content": c},
+                        ],
+                        tokenize=False,
+                    )
+                    for q, c in zip(questions, completions)
+                ]
+        inputs = self.tokenizer(
+            final_model_input,
+            return_tensors="pt",
+            padding="max_length",
+            max_length=self.MAX_LEN,
+            padding_side="left",
+            truncation=True,
+        )
+        print("input_shape", inputs['input_ids'].size())
+        final_total_len = (inputs["attention_mask"].sum(dim=1) - 1).tolist()
+        output_len = [
+            (total - inp_len - 1)
+            if total < self.MAX_LEN
+            else (min(self.MAX_LEN, total - inp_len) - 1)
+            for inp_len, total in zip(final_inputs_len, final_total_len)
+        ]
+
+        # check this implementation is required or not
+        inputs["input_ids"] = inputs["input_ids"][:, -self.MAX_LEN:]
+        inputs["attention_mask"] = inputs["attention_mask"][:, -self.MAX_LEN:]
+        
+        return inputs, final_inputs_len, output_len, advantages, rewards_list, rewards
+
     
     def train(self, train_dataloader, save_directory = None, val_dataloader=None):
         print("start training")
@@ -263,106 +373,7 @@ class GRPOTrain():
 
                 self.optimizer.zero_grad()
                 total_loss_sum = 0.0
-                # Run multiple generations per batch and average the loss
-                output_groups = []
-
-                questions = [x for q in batch["question"] for x in [q]*self.GROUP_SIZE]
-                answers = [x for q in batch["answer"] for x in [q]*self.GROUP_SIZE]
-                # print("length of batch prompt", len(batch["prompt"]))
-                batch_inputs = [x for b in batch["prompt"] for x in [b]*self.GROUP_SIZE]
-                batch_inputs = self.tokenizer.apply_chat_template(batch_inputs, tokenize=False, add_generation_prompt=True)
-                
-                inputs = self.tokenizer(
-                    batch_inputs,
-                    return_tensors="pt",
-                    padding=True,
-                    padding_side="left",
-                )
-                
-                refs = inputs["input_ids"]
-                # print("refs_size", len(refs))
-                for i in range(0, len(refs), self.GROUP_SIZE*self.INF_F):
-                    
-                    current_inputs = current_inputs = {
-                        k: v[i : i + self.GROUP_SIZE*self.INF_F].clone().to(self.DEVICE) for k, v in inputs.items()
-                    }
-                    outputs = self.run_inference(self.model, current_inputs)
-                    current_inputs = current_inputs = {
-                        k: v[i : i + self.GROUP_SIZE*self.INF_F].to("cpu") for k, v in inputs.items()
-                    }
-                    current_inputs = None
-                    output_groups.append(outputs)
-
-                # output_groups = torch.stack(output_groups)
-                completions = [
-                    self.tokenizer.decode(g[len(l):], skip_special_tokens=True)
-                    for i, output in enumerate(output_groups) for g, l in zip(output, refs[i*(self.GROUP_SIZE*self.INF_F): i*(self.GROUP_SIZE*self.INF_F) + self.GROUP_SIZE*self.INF_F])
-                ] 
-                # print("completions size", len(completions))
-                # print("refs size", len(refs))
-                advantages, rewards, rewards_list = self.get_advantages(
-                    completions,
-                    group_size=self.GROUP_SIZE,
-                    answers=answers,
-                    questions=questions,
-                )
-                inputs = inputs.to("cpu")
-                if self.use_wandb:
-                    table = wandb.Table(columns=["question", "answer", "model output", "reward"])
-                    for idx, (q, a, c, r) in enumerate(
-                        zip(questions, answers, completions, rewards)
-                    ):
-                        if idx % self.GROUP_SIZE == 0:
-                            table.add_data(q, a, c, r.item())
-                    wandb.log({"completions": table}, commit=False)
-
-                ## Compute reference log-prob
-                logp_old = [None] * len(inputs["input_ids"])
-
-                final_inputs_len = [
-                    len(
-                        self.tokenizer.apply_chat_template(
-                            [
-                                {"role": "system", "content": SYSTEM_PROMPT},
-                                {"role": "user", "content": q},
-                            ]
-                        )
-                    )
-                    for q in questions
-                ]
-
-                final_model_input = [
-                            self.tokenizer.apply_chat_template(
-                                [
-                                    {"role": "system", "content": SYSTEM_PROMPT},
-                                    {"role": "user", "content": q},
-                                    {"role": "assistant", "content": c},
-                                ],
-                                tokenize=False,
-                            )
-                            for q, c in zip(questions, completions)
-                        ]
-                inputs = self.tokenizer(
-                    final_model_input,
-                    return_tensors="pt",
-                    padding="max_length",
-                    max_length=self.MAX_LEN,
-                    padding_side="left",
-                    truncation=True,
-                )
-                print("input_shape", inputs['input_ids'].size())
-                final_total_len = (inputs["attention_mask"].sum(dim=1) - 1).tolist()
-                output_len = [
-                    (total - inp_len - 1)
-                    if total < self.MAX_LEN
-                    else (min(self.MAX_LEN, total - inp_len) - 1)
-                    for inp_len, total in zip(final_inputs_len, final_total_len)
-                ]
-
-                # check this implementation is required or not
-                inputs["input_ids"] = inputs["input_ids"][:, -self.MAX_LEN:]
-                inputs["attention_mask"] = inputs["attention_mask"][:, -self.MAX_LEN:]
-                # token_with_loss = sum(output_len)
+                inputs, final_inputs_len, output_len, advantages, rewards_list, rewards = self.prepare_inputs(batch)
 
                 logp_refs_stacked = []
                 for i in range(0, len(inputs["input_ids"]), self.MINI_BATCH_SIZE):
@@ -446,7 +457,7 @@ class GRPOTrain():
                             {
                                 "rewards": rewards.float().mean().item(),
                                 "correctness_reward": torch.mean(torch.tensor(rewards_list[0])),
-                                "format_reward": torch.mean(torch.tensor(rewards_list[1])),
+                                "format_reward": torch.mean(torch.tensor(rewards_list[2])),
                                 "loss": step_loss,
                                 "kl_div": step_kl_div,
                                 "objective": step_objective,
@@ -461,28 +472,6 @@ class GRPOTrain():
                 with torch.no_grad():
                     for ref_param, param in zip(self.reference_model.parameters(), self.model.parameters()):
                         ref_param.data.mul_(self.ema_decay).add_(param.data, alpha=1 - self.ema_decay)
-
-                # if training_step % evaluation_steps == 0:
-                #     model.eval()
-                #     eval_loss = 0.0
-                #     eval_steps = 0
-                #     with torch.no_grad():
-                #         for eval_batch in eval_dataloader:
-                #             batch_loss_sum = 0.0
-                #             for generation in range(GROUP_SIZE):
-                #                 outputs = model(
-                #                     input_ids=eval_batch["input_ids"],
-                #                     attention_mask=eval_batch["attention_mask"],
-                #                     labels=eval_batch["input_ids"])
-                #                 batch_loss_sum += compute_loss(outputs.logits, eval_batch["input_ids"], eval_batch["attention_mask"])
-                #             batch_avg_loss = batch_loss_sum / GROUP_SIZE
-                #             eval_loss += batch_avg_loss.item()
-                #             eval_steps += 1
-                #             if eval_steps >= 2:  # adjust the number of eval batches as needed
-                #                 break
-                #     avg_eval_loss = eval_loss / eval_steps if eval_steps > 0 else float('inf')
-                #     print(f"Step {training_step}: Evaluation average loss over {eval_steps} steps: {avg_eval_loss}")
-                #     model.train()
 
                 if pbar.n > self.MAX_ITER:
                         break

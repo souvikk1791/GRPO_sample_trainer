@@ -17,29 +17,29 @@ You are an helpful Assistant with excellent reasoning ability. When the user ask
 <answer> {answer here} </answer>
 """
 
-BATCH_SIZE = 16
+batch_size = 16
 evaluation_steps = 5
 ema_decay = 0.99         # EMA decay factor for reference model
 kl_lambda = 0.1          # weight for KL divergence loss
-GROUP_SIZE = 16      # number of generations per batch
-DTYPE = torch.bfloat16
-DEVICE = "cuda"
-GRPO_ITER = 2
-EPOCHS = 5
-MAX_LEN = 1024
+group_size = 16      # number of generations per batch
+dtype = torch.bfloat16
+device = "cuda"
+grpo_iter = 2
+epochs = 5
+max_len = 1024
 
-GEN_CONFIG = GenerationConfig(
+gen_config = GenerationConfig(
     num_return_sequences=1,
-    max_length=MAX_LEN,
+    max_length=max_len,
     do_sample=True,
     temperature=0.7,
     top_p=0.9,
 )
 
-MINI_BATCH_SIZE = 4
-ETA = 0.1
-BETA = 0.1
-MAX_ITER = 100000
+mini_batch_size = 4
+eta = 0.1
+beta = 0.1
+max_iter = 100000
 
 # uncomment middle messages for 1-shot prompting
 def get_gsm8k_questions(split = "train") -> Dataset:
@@ -62,29 +62,30 @@ dataset = get_gsm8k_questions()
 
 dataloader = DataLoader(
     dataset,
-    batch_size=BATCH_SIZE,
+    batch_size=batch_size,
     shuffle=True,
     collate_fn=lambda x:
      {k: [b[k] for b in x] for k in x[0].keys()},
 )
 print("batches:", len(dataloader))
 
-trainer = GRPOTrain(BATCH_SIZE=BATCH_SIZE
+trainer = GRPOTrain(batch_size=batch_size
                     , evaluation_steps=evaluation_steps
                     , ema_decay=ema_decay
                     , kl_lambda=kl_lambda
-                    , GROUP_SIZE=GROUP_SIZE
-                    , DTYPE=DTYPE
-                    , DEVICE=DEVICE
-                    , GRPO_ITER=GRPO_ITER
-                    , EPOCHS=EPOCHS
-                    , MAX_LEN=MAX_LEN
-                    , GEN_CONFIG=GEN_CONFIG
-                    , MINI_BATCH_SIZE=MINI_BATCH_SIZE
-                    , ETA=ETA
-                    , BETA=BETA
-                    , MAX_ITER=MAX_ITER
+                    , group_size=group_size
+                    , dtype=dtype
+                    , device=device
+                    , grpo_iter=grpo_iter
+                    , epochs=epochs
+                    , max_len=max_len
+                    , gen_config=gen_config
+                    , mini_batch_size=mini_batch_size
+                    , eta=eta
+                    , beta=beta
+                    , max_iter=max_iter
                     , use_wandb = True
+                    , system_prompt=SYSTEM_PROMPT
                     )
 
 peft_config = {
