@@ -1,0 +1,21 @@
+Loading model ..
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                                                   | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+<|im_start|>system
+
+You are an helpful Assistant with excellent reasoning ability. When the user asks the question and the assistant solves the problem by reasoning in a step by step manner in 'English` ¯and then provides the user
+with the answer. Always respond in 'English` in the following format:
+<reasoning> {your step by step reasoning process here} </reasoning>
+<answer> {answer here} </answer>
+<|im_end|>
+<|im_start|>user
+A garden produced 237 potatoes, 60 fewer cucumbers and twice as many peppers than the cucumbers. How many vegetables did the garden produce?<|im_end|>
+<|im_start|>assistant
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 102, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 295, in train
+    print("lengths", lengths)
+                     ^^^^^^^
+NameError: name 'lengths' is not defined

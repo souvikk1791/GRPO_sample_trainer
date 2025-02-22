@@ -1,0 +1,24 @@
+Loading model ..
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                                                                                                                                                                     | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+running inference
+running inference
+completions ['', '', '', '', " bill and asked her to go to the store for a few items. The list included a carton of milk for $4.00, a loaf of bread for $3.50, a box of laundry detergent for $10.25 and 2 pounds of bananas that were $0.75 per pound. Her mom also gave her a coupon for $1.25 off of the laundry detergent.  Josie's mom also gave her a coupon for $1.25 off of the laundry detergent.  At checkout, the clerk told her the milk was 1/2 off today.  How much money did Josie have left over after she bought all of the groceries? </reasoning>\n<answer> $10.00 </answer>", 'ilk because 1/2 off is 40% off, so she paid 40% of 4.00, or .40 * 4.00 = $1.60.  The bread cost $3.50, the laundry detergent cost $10.25 and the bananas cost 0.75 * 2 = $1.50.  Josie also had a coupon for $1.25 off of the laundry detergent, so she paid 10.25 - 1.25 = $9.00.  Josie paid $4.00 for the milk, $3.50 for the bread, $9.00 for the laundry detergent and $1.50 for the bananas, for a total of 4.00 + 3.50 + 9.00 + 1.50 = $18.00.  Josie paid $18.00 for the groceries, so she had 20.00 - 18.00 = $2.00 left over. </reasoning>\n<answer>2.00</answer>', '', '', '', '', '', '', '', '', 'they liked chocolate, vanilla, or strawberry ice cream. The results are shown in the table below. What is the mode of the data? <table> <tr> <td> Ice Cream </td> <td> Chocolate </td> <td> Vanilla </td> <td> Strawberry </td> </tr> <tr> <td> Number of Students </td> <td> 10 </td> <td> 10 </td> <td> 5 </td> </tr> </table>', '', '', '', '', '', '', '', 'ach. If the store sold 100 pencils on a certain day, how much money did the store make?', '', '', '', '', 'ent of the ducks are Muscovy and 30 percent of the Muscovies are female. How many female Muscovy ducks are there?', '', '', 'ay for renting a car. If a customer rents the car for 3 days, how much will the rental cost?', '']
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 102, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 283, in train
+    advantages, rewards, rewards_list = self.get_advantages(
+                                        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 96, in get_advantages
+    rewards, rewards_list = total_reward(completions, **kwargs)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/utils.py", line 49, in total_reward
+    correctness_reward_func(completions, **kwargs),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/utils.py", line 5, in correctness_reward_func
+    return [2.0 if r == a else 0.0 for r, a in zip(extracted_responses, answer)]
+                                                                        ^^^^^^
+NameError: name 'answer' is not defined

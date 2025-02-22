@@ -1,0 +1,7 @@
+{"time":"2025-02-20T06:16:05.509075707Z","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/home/jovyan/data/vision training/GRPO_sample_trainer/wandb/run-20250220_061601-pfwk8dcy/logs/debug-core.log"}
+{"time":"2025-02-20T06:16:06.432915665Z","level":"INFO","msg":"created new stream","id":"pfwk8dcy"}
+{"time":"2025-02-20T06:16:06.433283465Z","level":"INFO","msg":"stream: started","id":"pfwk8dcy"}
+{"time":"2025-02-20T06:16:06.433523936Z","level":"INFO","msg":"handler: started","stream_id":"pfwk8dcy"}
+{"time":"2025-02-20T06:16:06.433285048Z","level":"INFO","msg":"writer: Do: started","stream_id":"pfwk8dcy"}
+{"time":"2025-02-20T06:16:06.433672156Z","level":"INFO","msg":"sender: started","stream_id":"pfwk8dcy"}
+{"time":"2025-02-20T06:16:06.623844023Z","level":"INFO","msg":"Starting system monitor"}

@@ -1,0 +1,298 @@
+Loading model ..
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                                                   | 0/4680 [00:00<?, ?it/s]
+running inference
+running inference
+completions
+
+
+
+
+questions Bailey is making a rectangle out of a 100cm length of rope he has. If the longer sides of the rectangle were 28cm long, what is the length of each of the shorter sides?
+completions
+
+
+
+
+questions Bailey is making a rectangle out of a 100cm length of rope he has. If the longer sides of the rectangle were 28cm long, what is the length of each of the shorter sides?
+completions
+
+
+
+questions Jacob can write twice as fast as Nathan. Nathan wrote 25 letters in one hour. How many letters can the two write in 10 hours together?
+completions
+
+
+
+questions Jacob can write twice as fast as Nathan. Nathan wrote 25 letters in one hour. How many letters can the two write in 10 hours together?
+completions
+
+
+
+
+
+questions Calvin and Paislee played a pool game where points were awarded for winning a round. If Calvin had scored 500 points and Paislee 3/4 times as many points as Calvin, how many points was Paislee required to achieve to have a chance of tying the game?
+completions
+
+
+
+
+
+questions Calvin and Paislee played a pool game where points were awarded for winning a round. If Calvin had scored 500 points and Paislee 3/4 times as many points as Calvin, how many points was Paislee required to achieve to have a chance of tying the game?
+completions
+
+
+
+questions Camila has only gone hiking 7 times in her life. Amanda has gone on 8 times as many hikes as Camila, and Steven has gone on 15 more hikes than Amanda. If Camila wants to say that she has hiked as many times as Steven and plans to go on 4 hikes a week, how many weeks would it take Camila to achieve her goal?
+completions
+
+
+
+questions Camila has only gone hiking 7 times in her life. Amanda has gone on 8 times as many hikes as Camila, and Steven has gone on 15 more hikes than Amanda. If Camila wants to say that she has hiked as many times as Steven and plans to go on 4 hikes a week, how many weeks would it take Camila to achieve her goal?
+completions
+
+
+
+
+questions Ann is 6 years old. Her brother Tom is now two times older. What will be the sum of their ages 10 years later?
+completions
+
+
+
+
+questions Ann is 6 years old. Her brother Tom is now two times older. What will be the sum of their ages 10 years later?
+completions
+
+
+
+
+questions In 2021, Wayne is 37 years old.  His brother Peter is 3 years older than him and their sister Julia is 2 years older than Peter.  What year was Julia born in?
+completions
+
+
+
+
+questions In 2021, Wayne is 37 years old.  His brother Peter is 3 years older than him and their sister Julia is 2 years older than Peter.  What year was Julia born in?
+completions
+user
+To solve this problem, we need to determine the depth of the river in mid-July. We know that by mid-May, the river is 5 feet deep. By mid-June, the river is 10 feet deeper than mid-May, so the depth of the river in mid-June is 5 + 10 = 15 feet. By mid-July, the river is three times deeper than mid-June, so the depth of the river in mid-July is 15 * 3 = 45 feet. Therefore, the depth of the river by mid-July is 45 feet. The answer is 45.
+questions In mid-May, the river flowing through Moreland is five feet deep. By mid-June, the river is 10 feet deeper than mid-May. By mid-July, the river is three times deeper than mid-June. How many feet deep is the river by mid-July?
+completions
+user
+To solve this problem, we need to calculate the depth of the river in mid-July. Let's break it down step by step:
+
+1. In mid-May, the river is 5 feet deep.
+2. By mid-June, the river is 10 feet deeper than mid-May, so it is 5 + 10 = 15 feet deep.
+3. By mid-July, the river is three times deeper than mid-June, so it is 15 * 3 = 45 feet deep.
+
+Therefore, the river is 45 feet deep by mid-July.
+questions In mid-May, the river flowing through Moreland is five feet deep. By mid-June, the river is 10 feet deeper than mid-May. By mid-July, the river is three times deeper than mid-June. How many feet deep is the river by mid-July?
+completions
+user
+Simon needs to buy a slab of beef that costs $25. How much must he spend to make 40 kabob sticks?
+questions A single kabob stick has 4 cubes of beef. A slab of beef that costs $25 can be cut into 80 cubes. How much must Simon spend to make 40 kabob sticks?
+completions
+user
+Simon needs to buy 40 kabob sticks. Each kabob stick has 4 cubes of beef. A slab of beef that costs $25 can be cut into 80 cubes. How much must Simon spend to make 40 kabob sticks?
+questions A single kabob stick has 4 cubes of beef. A slab of beef that costs $25 can be cut into 80 cubes. How much must Simon spend to make 40 kabob sticks?
+completions
+
+
+
+questions In the Math club, there are two times as many males as females. If there are 6 female members, how many members are there in the Math club in total?
+completions
+
+
+
+questions In the Math club, there are two times as many males as females. If there are 6 female members, how many members are there in the Math club in total?
+completions
+
+
+
+
+questions The population of Delaware is 974,000. A study showed that there are 673 cell phones per 1000 people in the state. How many cell phones are there in Delaware?
+completions
+
+
+
+
+questions The population of Delaware is 974,000. A study showed that there are 673 cell phones per 1000 people in the state. How many cell phones are there in Delaware?
+completions
+user
+Nicki spent the last year running a lot. For the first half of the year, she ran a total of 20 miles per week. For the second half of the year, she increased the mileage to 30 miles per week. How many miles total did she run for the year?
+questions Nicki spent the last year running a lot. For the first half of the year, she ran a total of 20 miles per week. For the second half of the year, she increased the mileage to 30 miles per week. How many miles total did she run for the year?
+completions
+user
+To solve this problem, we need to calculate the total miles Nicki ran in the first half of the year and the second half of the year separately, and then add them together. For the first half of the year, she ran 20 miles per week for 4 weeks, which is 20 * 4 = 80 miles. For the second half of the year, she ran 30 miles per week for 4 weeks, which is 30 * 4 = 120 miles. Therefore, the total miles she ran for the year is 80 + 120 = 200 miles.
+questions Nicki spent the last year running a lot. For the first half of the year, she ran a total of 20 miles per week. For the second half of the year, she increased the mileage to 30 miles per week. How many miles total did she run for the year?
+completions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+questions Xavier plays football with his friends. During 15 minutes Xavier can score 2 goals on average. How many goals on average is Xavier able to score, when the match lasted for 2 hours?
+completions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+questions Xavier plays football with his friends. During 15 minutes Xavier can score 2 goals on average. How many goals on average is Xavier able to score, when the match lasted for 2 hours?
+completions
+
+
+
+
+questions Billy's family likes to keep their bicycles stored in the garage when they're not being used.  They own a total of 4 bicycles.  Each bicycle wheel has 10 spokes.  How many spokes are inside the garage?
+completions
+
+
+
+
+questions Billy's family likes to keep their bicycles stored in the garage when they're not being used.  They own a total of 4 bicycles.  Each bicycle wheel has 10 spokes.  How many spokes are inside the garage?
+completions
+
+
+
+
+questions At his cafe, Milton sells apple pie and peach pie slices.  He cuts the apple pie into 8 slices.  He cuts the peach pie into 6 slices.  On the weekend, 56 customers ordered apple pie slices and 48 customers ordered peach pie slices.  How many pies did Milton sell during the weekend?
+completions
+
+
+
+
+questions At his cafe, Milton sells apple pie and peach pie slices.  He cuts the apple pie into 8 slices.  He cuts the peach pie into 6 slices.  On the weekend, 56 customers ordered apple pie slices and 48 customers ordered peach pie slices.  How many pies did Milton sell during the weekend?
+completions
+
+
+
+
+questions In a 100-item exam, Lowella got 35% of the questions correctly. Pamela got 20% more correct answers than Lowella and Mandy got twice Pamela's score. What is Mandy’s score?
+completions
+
+
+
+
+questions In a 100-item exam, Lowella got 35% of the questions correctly. Pamela got 20% more correct answers than Lowella and Mandy got twice Pamela's score. What is Mandy’s score?
+completions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+questions Roger uses his lunch break to walk the stairs in his office building.  He can walk 2,000 steps in 30 minutes.  If his daily goal is 10,000 steps, how many minutes will it take him to reach his goal?
+completions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+questions Roger uses his lunch break to walk the stairs in his office building.  He can walk 2,000 steps in 30 minutes.  If his daily goal is 10,000 steps, how many minutes will it take him to reach his goal?
+Model save successful

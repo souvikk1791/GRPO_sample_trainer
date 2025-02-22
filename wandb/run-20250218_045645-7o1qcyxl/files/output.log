@@ -1,0 +1,49 @@
+Loading model ..
+The model was loaded with use_flash_attention_2=True, which is deprecated and may be removed in a future release. Please use `attn_implementation="flash_attention_2"` instead.
+get peft model
+Traceback (most recent call last):
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 101, in <module>
+    trainer.init_model(model_name, get_peft=True)
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 173, in init_model
+    self.model = get_peft_model(self.model, self.peft_config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/mapping.py", line 222, in get_peft_model
+    return MODEL_TYPE_TO_PEFT_MODEL_MAPPING[peft_config.task_type](
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/peft_model.py", line 1684, in __init__
+    super().__init__(model, peft_config, adapter_name, **kwargs)
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/peft_model.py", line 176, in __init__
+    self.base_model = cls(model, {adapter_name: peft_config}, adapter_name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/lora/model.py", line 141, in __init__
+    super().__init__(model, config, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage)
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 184, in __init__
+    self.inject_adapter(self.model, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage)
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 501, in inject_adapter
+    self._create_and_replace(peft_config, adapter_name, target, target_name, parent, current_key=key)
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/lora/model.py", line 235, in _create_and_replace
+    new_module = self._create_new_module(lora_config, adapter_name, target, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/lora/model.py", line 354, in _create_new_module
+    new_module = dispatcher(target, adapter_name, lora_config=lora_config, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/lora/layer.py", line 1261, in dispatch_default
+    new_module = Linear(target, adapter_name, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/lora/layer.py", line 440, in __init__
+    self.update_layer(
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/lora/layer.py", line 154, in update_layer
+    self._move_adapter_to_device_of_base_layer(adapter_name)
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/peft/tuners/tuners_utils.py", line 857, in _move_adapter_to_device_of_base_layer
+    adapter_layer[adapter_name] = adapter_layer[adapter_name].to(device, dtype=dtype)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1343, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/torch/nn/modules/module.py", line 930, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1329, in convert
+    return t.to(
+           ^^^^^
+KeyboardInterrupt

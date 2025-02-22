@@ -1,0 +1,17 @@
+Loading model ..
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                                                   | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+length of batch prompt 16
+refs_size 256
+running inference
+running inference
+running inference
+running inference
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 101, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 295, in train
+    output_groups = torch.stack(output_groups)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: stack expects each tensor to be equal size, but got [64, 596] at entry 0 and [64, 792] at entry 1

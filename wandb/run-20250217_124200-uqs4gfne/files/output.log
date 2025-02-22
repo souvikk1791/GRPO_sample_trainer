@@ -1,0 +1,10 @@
+Loading model ..
+get peft model
+Creating reference model
+Traceback (most recent call last):
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 113, in <module>
+    trainer.init_model(model_name, get_peft=True)
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 167, in init_model
+    self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=self.MAX_ITER)
+                                                                ^^^^^^^^^
+NameError: name 'optimizer' is not defined. Did you mean: 'self.optimizer'?

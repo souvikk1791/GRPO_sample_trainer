@@ -1,0 +1,16 @@
+Loading model ..
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                               | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 114, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 245, in train
+    inputs = self.tokenizer(
+             ^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 2868, in __call__
+    encodings = self._call_one(text=text, text_pair=text_pair, **all_kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/py3.12/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 2928, in _call_one
+    raise ValueError(
+ValueError: text input must be of type `str` (single example), `List[str]` (batch or single pretokenized example) or `List[List[str]]` (batch of pretokenized examples).

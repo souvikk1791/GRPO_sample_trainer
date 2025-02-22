@@ -1,0 +1,21 @@
+Loading model ..
+get peft model
+Creating reference model
+start training
+GRPO Training:   0%|                                                                                                                                                                                                                                                                             | 0/4680 [00:00<?, ?it/s]Traceback (most recent call last):
+running inference
+running inference
+8
+mask.device cuda:0
+final_advantages.device cuda:0
+per_token_loss.device cuda:0
+loss_mask.device cuda:0
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/trainer.py", line 102, in <module>
+    trainer.train(dataloader, save_directory="models/")
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 411, in train
+    _objective, _loss, _kl_div = self.compute_step_loss(logp_proxy, logp_refs_stacked[i], logp_old[i], advantages[i : i + self.MINI_BATCH_SIZE],
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jovyan/data/vision training/GRPO_sample_trainer/grpo.py", line 162, in compute_step_loss
+    print("loss from sum:", loss.float().item())
+                            ^^^^^^^^^^^^^^^^^^^
+RuntimeError: a Tensor with 16 elements cannot be converted to Scalar
