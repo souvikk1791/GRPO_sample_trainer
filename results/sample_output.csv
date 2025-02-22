@@ -1,0 +1,208 @@
+"question","answer","model output","reward"
+"Mr. Resty has two identical 4-story buildings. The first floor has 2 apartment units while the rest of the floors have 5 apartment units on each floor. How many apartment units does Mr. Resty have in all?","34","<reasoning>
+First, we need to determine the number of apartment units on one floor of the buildings. Each floor of the first building has 2 apartment units, and the rest of the floors have 5 apartment units each. Therefore, the number of apartment units on one floor is 2 + 5 = 7. Since there are two identical 4-story buildings, the total number of apartment units in both buildings is 7 * 2 * 4 = 56.
+</reasoning>
+<answer>56</answer>","0.75"
+"The file, 90 megabytes in size, downloads at the rate of 5 megabytes per second for its first 60 megabytes, and then 10 megabytes per second thereafter. How long, in seconds, does it take to download entirely?","15","<reasoning>
+1. The total file size is 90 megabytes.
+2. For the first 60 megabytes, the download rate is 5 megabytes per second. So, the time taken to download these 60 megabytes is \( \frac{60 \text{ MB}}{5 \text{ MB/s}} = 12 \text{ seconds} \).
+3. After the first 60 megabytes, the remaining file size is \( 90 \text{ MB} - 60 \text{ MB} = 30 \text{ MB} \).
+4. The download rate from then on is 10 megabytes per second. So, the time taken to download the remaining 30 megabytes is \( \frac{30 \text{ MB}}{10 \text{ MB/s}} = 3 \text{ seconds} \).
+5. Therefore, the total time to download the entire file is \( 12 \text{ seconds} + 3 \text{ seconds} = 15 \text{ seconds} \).
+</reasoning>
+<answer>15</answer>","2.75"
+"In a certain forest, there are 4 species of trees: oak, pine, spruce, and birch. There is a total of 4000 trees in the forest. Spruces make up 10% of all the trees, and pines 13%. There are as many oaks as spruces and pines put together. How many birches are there in the forest?","2160","<reasoning>
+Let's denote the number of oak trees as \( O \), pine trees as \( P \), spruce trees as \( S \), and birch trees as \( B \).
+
+We know the following:
+1. \( O + P + S + B = 4000 \) (total number of trees)
+2. Spruces make up 10% of all the trees, so \( S = 0.1 \times 4000 = 400 \)
+3. Pines make up 13% of all the trees, so \( P = 0.13 \times 4000 = 520 \)
+4. There are as many oaks as spruces and pines combined, so \( O = S + P = 400 + 520 = 920 \)
+
+Now, let's find the number of birches:
+5. Since spruces and pines make up 10% and 13% respectively of the total, the remaining part must be oaks, which is 87% of the total (100% - 10% - 13% = 77%). Therefore, \( 0.77 \times 4000 = 3080 \) of the trees are spruces and pines.
+
+We know there are 920 oaks, and since spruces and pines make up 87% of the total:
+\[ 0.87 \times 4000 = 3480 \text{ (total spruces and pines)} \]
+
+Since spruces and pines are 10% and 13% of the total trees, and spruces and pines together make up 3480 trees:
+\[ 3480 = 0.10 \times 4000 + 0.13 \times 4000 \]
+\[ 3480 = (0.10 + 0.13) \times 4000 \]
+\[ 3480 = 0.23 \times 4000 \]
+
+Thus, the number of birches is 3080 (since it's 87% of the total and spruces and pines together make up 3480).
+
+So, there are 3080 birches in the forest.
+</reasoning>
+<answer>3080</answer>","0.75"
+"Emma's bank account has $100 in it. Each day of the week, she spends $8. At the end of the week, she goes to the bank and asks for as many $5 bills as her account can give her. She leaves the rest in the account. How many dollars remain in the account?","4","<reasoning>
+Emma spends $8 each day for 7 days, so she spends a total of $8 * 7 = $56. After the week, her account balance is $100 - $56 = $44. At the end of the week, she goes to the bank and asks for as many $5 bills as her account can give her. Since her account balance is $44, she can only get $44 / 5 = 8 bills (as she can only get whole bills). She leaves the rest in the account, which is $44 - (8 * 5) = $44 - $40 = $4.
+</reasoning>
+<answer>4</answer>","2.75"
+"If Pete read twice as many books as Matt did last year, and this year he doubles that number while Matt reads only 50% more, how many books does Pete read across both years if Matt read 75 books in his second year?","300","<reasoning>
+1. Matt read 75 books in the second year.
+2. Pete read twice as many books as Matt did last year, so Pete read \( 2 \times 75 = 150 \) books last year.
+3. This year, Pete doubles the number of books he read last year, so Pete read \( 150 \times 2 = 300 \) books this year.
+4. Matt read 50% more books this year, so Matt read \( 75 + (0.5 \times 75) = 75 + 37.5 = 112.5 \) books in this year.
+5. Since Pete read 300 books this year and Matt read 112.5 books, we can find the total number of books they both read by adding these numbers together: \( 300 + 112.5 = 412.5 \).
+
+Therefore, Pete reads \( 412.5 \) books across both years.
+</reasoning>
+<answer>412.5</answer>","0.25"
+"Calvin and Phoebe each have 8 more pastries than Frank but only five less than Grace. If Grace has 30 pastries, calculate the total number of pastries that the four have?","97","<reasoning>
+1. Grace has 30 pastries.
+2. Calvin and Phoebe each have 5 less than Grace, so Calvin and Phoebe have 30 - 5 = 25 pastries.
+3. Calvin and Phoebe together have 25 + 25 = 50 pastries.
+4. Calvin and Phoebe each have 8 more than Frank, so Frank has 50 - 8 = 42 pastries.
+5. Frank has 5 less than Grace, so Frank has 30 - 5 = 25 pastries.
+6. Calvin and Phoebe together have 50 pastries, and Frank has 25 pastries, so the total number of pastries they have is 50 + 25 = 75 pastries.
+</reasoning>
+<answer>75</answer>","0.75"
+"Greg bought a 20-pack of granola bars to eat at lunch for the week. He set aside one for each day of the week, traded three of the remaining bars to his friend Pete for a soda, and gave the rest to his two sisters. How many did each sister get when they split them evenly?","5","<reasoning>
+1. Greg bought a 20-pack of granola bars.
+2. He set aside one granola bar for each day of the week, which totals 7 granola bars.
+3. After setting aside granola bars for the week, he had 20 - 7 = 13 granola bars remaining.
+4. He traded 3 granola bars to his friend Pete for a soda.
+5. After trading, he had 13 - 3 = 10 granola bars remaining.
+6. He gave the remaining 10 granola bars to his two sisters.
+7. When they split the granola bars evenly, each sister received 10 / 2 = 5 granola bars.
+</reasoning>
+<answer>5</answer>","2.75"
+"Ms. Warren ran at 6 mph for 20 minutes. After the run, she walked at 2 mph for 30 minutes. How many miles did she run and walk in total?","3","<reasoning>
+First, let's calculate the distance Ms. Warren ran in miles. She ran at a speed of 6 mph for 20 minutes. Since 20 minutes is 1/3 of an hour, the distance she ran is:
+\[ \text{Distance run} = \text{Speed} \times \text{Time} = 6 \text{ mph} \times \frac{1}{3} \text{ hour} = 2 \text{ miles} \]
+
+Next, let's calculate the distance she walked in miles. She walked at a speed of 2 mph for 30 minutes. The time she walked is the same as the time she ran, which is 1/2 hour (since 30 minutes is 1/2 hour). The distance she walked is:
+\[ \text{Distance walked} = \text{Speed} \times \text{Time} = 2 \text{ mph} \times \frac{1}{2} \text{ hour} = 1 \text{ mile} \]
+
+To find the total distance she ran and walked, we add the distance she ran to the distance she walked:
+\[ \text{Total distance} = \text{Distance run} + \text{Distance walked} = 2 \text{ miles} + 1 \text{ mile} = 3 \text{ miles} \]
+
+Therefore, Ms. Warren ran and walked a total of 3 miles.
+</reasoning>
+<answer>3</answer>","2.75"
+"Camille goes to the Ice Cream Palace with her husband and two children. Each one orders a different ice cream. Camille orders a banana split, her husband orders a waffle bowl, her daughter orders a single cone, and her son orders a double cone. The cone has 1 scoop of ice cream, the banana split has 3 times as many scoops of ice cream as the cone and the waffle bowl has 1 more scoop than the banana split. How many scoops of ice cream did the ice cream man serve?","10","<reasoning>
+First, let's calculate the number of scoops for each type of ice cream:
+
+- Camille orders a banana split, which has 3 times as many scoops as a cone. Since a cone has 1 scoop, the banana split has \(3 \times 1 = 3\) scoops.
+- Camille orders a waffle bowl, which has 1 more scoop than the banana split. Since the banana split has 3 scoops, the waffle bowl has \(3 + 1 = 4\) scoops.
+- Camille's daughter orders a single cone, which has 1 scoop.
+- Camille's son orders a double cone, which has 2 scoops.
+
+Now, let's sum up the scoops for all the ice creams ordered:
+
+- Banana split: 3 scoops
+- Waffle bowl: 4 scoops
+- Single cone: 1 scoop
+- Double cone: 2 scoops
+
+Total scoops served = 3 + 4 + 1 + 2 = 10 scoops
+
+Therefore, the ice cream man served 10 scoops of ice cream.
+</reasoning>
+<answer>10</answer>","2.75"
+"The vending machine fails to drop a snack when it’s purchased one in six times. One in ten times, it will accidentally drop two snacks. The rest of the time, it drops the purchased snack. If thirty people have used the vending machine once each to purchase a snack, how many snacks has the vending machine dropped?","28","<reasoning>
+1. First, let's calculate how many times the vending machine will drop a snack. Since it drops one snack in six out of every six times and one in ten times accidentally drops two snacks, we need to find the least common multiple (LCM) of 6 and 10 to see how often the machine will drop a snack in any given time period.
+
+2. The LCM of 6 and 10 is 30. This means in every 30 transactions, the machine will drop a snack 30 times. If thirty people have used the vending machine once each to purchase a snack, then in 30 times, each person will have bought one snack, and thus, the vending machine will have dropped one snack each time.
+
+3. However, if the machine drops a snack 30 times, it will have dropped 30 snacks (one per transaction). But we have to add the snack dropped in each transaction separately.
+
+4. To calculate the total number of snacks dropped:
+   - If the machine drops one snack per transaction, then the total number of snacks dropped is 30 (from the first transaction) + 30 (from the second transaction) + ... + 30 (from the third transaction) = 30 * 30 = 900.
+
+   But since it drops the snack once per transaction, we add one more snack to this total: 900 + 1 = 901.
+
+Therefore, the vending machine has dropped 901 snacks in total.
+</reasoning>
+<answer>901</answer>","0.75"
+"Chastity made 12 angel food cakes to give to friends.  She placed the cakes in boxes, and then walked them out to her car.  But she had forgotten her keys.  So, she placed the boxes of cakes in one stack on the hood of her car, and then she ran back into the house to get her keys.  But before she returned, a black crow came, landed on the stack of cakes, and knocked over half of the stack.  When Chastity returned, she picked up half of the fallen cakes, which were not damaged, but the rest of the cakes were destroyed.  How many cakes were destroyed?","3","<reasoning>
+First, let's determine how many cakes were in the stack before the crow knocked them over. Chastity placed 12 cakes in the stack, and a crow knocked over half of them. So, 12 / 2 = 6 cakes were knocked over.
+
+Now, the crow knocked over half of the remaining cakes, leaving 6 / 2 = 3 cakes standing.
+
+Chastity picked up half of the fallen cakes, which were 3. So, she picked up 3 / 2 = 1.5 cakes, but since she can't pick up half a cake, she picked up 1 whole cake.
+
+Therefore, the number of cakes destroyed is the number of cakes left standing minus the 1 cake that was picked up by Chastity: 3 - 1 = 2 cakes.
+
+So, the answer is 2.
+</reasoning>
+<answer>2</answer>","0.75"
+"Reggie and his brother are having a basketball shooting contest. They each get to take 10 shots. Layups are worth 1 point, free throws are worth 2 points, and anything further away is worth 3 points. Reggie makes 3 layups, two free throws, and one long shot. His brother only shoots long shots and makes 4 of them. How many points does Reggie lose by?","2","<reasoning>
+First, let's calculate the points Reggie earns from his shots:
+- Layups: 3 * 1 point = 3 points
+- Free throws: 2 * 2 points = 4 points
+- Long shots: 1 * 3 points = 3 points
+
+Total points Reggie gets = 3 + 4 + 3 = 10 points
+
+Reggie's brother makes 4 long shots, so he earns 4 * 3 = 12 points.
+
+Reggie's total points are 10, and his brother's total is 12. Therefore, Reggie loses 12 - 10 = 2 points by.
+
+Therefore, the answer is 2.
+</reasoning>
+<answer>2</answer>","2.75"
+"New York recorded 5000 new coronavirus cases on a particular week. In the second week, half as many new coronaviruses cases as the first week was recorded by the state. In the third week, 2000 more cases were recorded in the state. What is the total number of recorded new coronaviruses in the state after the three weeks?","9500","<reasoning>
+First, we calculate the number of new cases recorded in the second week. Since the second week had half as many cases as the first week, we divide the first week's cases by 2: \( \frac{5000}{2} = 2500 \).
+
+Next, we add the number of cases from all three weeks: \( 5000 \) (first week) + \( 2500 \) (second week) + \( 2000 \) (third week) = \( 9500 \).
+
+So the total number of new coronaviruses recorded in the state after three weeks is \( 9500 \).
+</reasoning>
+<answer>9500</answer>","2.75"
+"The difference between the ages of two friends is 2 years. The sum of their ages is 74 years. Find the age of the older friend.","38","<reasoning>
+Let's denote the age of the younger friend as \( x \) and the age of the older friend as \( y \). According to the problem, we have two pieces of information:
+
+1. The difference between their ages is 2 years: \( y - x = 2 \)
+2. The sum of their ages is 74 years: \( x + y = 74 \)
+
+We can solve these equations simultaneously to find the values of \( x \) and \( y \).
+
+First, we'll add the two equations to eliminate \( x \):
+
+\[
+(y - x) + (x + y) = 2 + 74
+\]
+
+This simplifies to:
+
+\[
+2y = 76
+\]
+
+Solving for \( y \):
+
+\[
+y = \frac{76}{2} = 38
+\]
+
+So, the age of the older friend is 38 years.
+
+Therefore, the answer is 38.
+</reasoning>
+<answer>38</answer>","2.75"
+"In preparation for the church fundraiser, Julia bakes one less than 5 cakes per day for 6 days.  Unfortunately, every other day, Julia's brother, Clifford, sneaks into Julia's house and eats one of Julia's cakes.  At the end of 6 days, how many cakes does Julia have remaining?","21","<reasoning>
+Julia bakes 5 - 1 = 4 cakes per day for 6 days. So, she bakes a total of 4 * 6 = 24 cakes. However, Clifford eats one cake every other day for 6 days. This means he eats 6 / 2 = 3 cakes. Therefore, Julia has 24 - 3 = 21 cakes remaining.
+</reasoning>
+<answer>21</answer>","2.75"
+"The Lion King cost 10 million to make and earned 200 million at the box office. If it earned a profit that was half of what Star Wars made and Star Wars cost 25 million to make, how many millions did Star Wars earn?","405","<reasoning>
+1. First, we need to determine the profit made from the Lion King. The Lion King earned 200 million at the box office, and the profit is half of what Star Wars made. Therefore, the profit is \( \frac{200}{2} = 100 \) million.
+
+2. Next, we add the profit made from the Lion King to the cost of making it to find the total cost of making both movies:
+   \[ \text{Total cost of Lion King} = \text{Cost of Lion King} + \text{Profit from Lion King} = 10 \text{ million} + 100 \text{ million} = 110 \text{ million} \]
+
+3. Now, we subtract this total cost from the combined earnings of the Lion King and Star Wars to find the total earnings of both movies:
+   \[ \text{Total earnings of Lion King} = \text{Earnings of Lion King} + \text{Profit from Lion King} \]
+   \[ \text{Total earnings of Lion King} = 200 \text{ million} + 100 \text{ million} = 300 \text{ million} \]
+
+   \[ \text{Total earnings of Star Wars} = \text{Earnings of Star Wars} + \text{Profit from Star Wars} \]
+   \[ \text{Total earnings of Star Wars} = 200 \text{ million} + 100 \text{ million} = 300 \text{ million} \]
+
+4. Finally, we add the earnings of the Lion King and Star Wars to find the combined earnings:
+   \[ \text{Combined earnings} = \text{Total earnings of Lion King} + \text{Total earnings of Star Wars} = 300 \text{ million} + 300 \text{ million} = 600 \text{ million} \]
+
+Thus, Star Wars earned 600 million.
+</reasoning>
+<answer>600</answer>","0.75"
