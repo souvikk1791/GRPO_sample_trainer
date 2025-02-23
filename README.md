@@ -7,11 +7,12 @@ To run the code:
 * uv pip install -r requirements.txt
 * python trainer.py
 
+### Settings
+* Modify trainer.py to change input settings/data.
 
-* Modify trainer.py to change input variables
 
-
-- [ ] TODO Qlora support.
+- [ ] Eval support.
+- [ ] QLora
 
 ## Results
 
